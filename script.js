@@ -49,7 +49,7 @@ function selectCapacity(capacity) {
     if (selectedButton) {
         selectedButton.classList.add("capacity-selected");
     }
-}
+updatePlanForCapacity(capacity);}
 
 
 /* ---------- SET A RATING ---------- */
@@ -203,7 +203,249 @@ function saveCheckIn() {
     );
 }
 
+/* ========================================
+   TODAY'S PLAN
+   ======================================== */
+/* ---------- ADAPT PLAN TO CAPACITY ---------- */
 
+function updatePlanForCapacity(capacity) {
+
+    let banner =
+        document.getElementById("capacityPlanBanner");
+
+    let mustSection =
+        document.querySelector(".plan-section.must");
+
+    let helpSection =
+        document.querySelector(".plan-section.help");
+
+    let couldSection =
+        document.querySelector(".plan-section.could");
+
+
+    // Reset everything first
+
+    mustSection.classList.remove("deemphasised");
+    helpSection.classList.remove("deemphasised");
+    couldSection.classList.remove("deemphasised");
+
+
+    // RED — MINIMUM DAY
+
+    if (capacity === "Red") {
+
+        banner.innerHTML = `
+            <span class="plan-mode">Minimum Day</span>
+
+            <strong>Only what matters.</strong>
+
+            <p>
+                Focus on what genuinely needs you today.
+            </p>
+        `;
+
+        banner.className =
+            "capacity-plan-banner red-plan";
+
+        helpSection.classList.add("deemphasised");
+        couldSection.classList.add("deemphasised");
+    }
+
+
+    // YELLOW — GENTLE DAY
+
+    else if (capacity === "Yellow") {
+
+        banner.innerHTML = `
+            <span class="plan-mode">Gentle Day</span>
+
+            <strong>Steady does it.</strong>
+
+            <p>
+                Make some room for what would help.
+            </p>
+        `;
+
+        banner.className =
+            "capacity-plan-banner yellow-plan";
+
+        couldSection.classList.add("deemphasised");
+    }
+
+
+    // GREEN — OPEN DAY
+
+    else if (capacity === "Green") {
+
+        banner.innerHTML = `
+            <span class="plan-mode">Open Day</span>
+
+            <strong>There's room to move things forward.</strong>
+
+            <p>
+                Use the capacity you have without borrowing from tomorrow.
+            </p>
+        `;
+
+        banner.className =
+            "capacity-plan-banner green-plan";
+    }
+}
+
+/* ---------- PLAN DATA ---------- */
+
+let planTasks =
+    JSON.parse(localStorage.getItem("planTasks")) || [];
+
+
+/* ---------- ADD PLAN TASK ---------- */
+
+function addPlanTask(category) {
+
+    let input =
+        document.getElementById(category + "Input");
+
+    let taskText =
+        input.value.trim();
+
+
+    // Don't add blank tasks
+
+    if (taskText === "") {
+        return;
+    }
+
+
+    // Create the task
+
+    let task = {
+        text: taskText,
+        category: category,
+        completed: false
+    };
+
+
+    // Add it to our plan
+
+    planTasks.push(task);
+
+
+    // Save
+
+    savePlanTasks();
+
+
+    // Redraw
+
+    displayPlanTasks();
+
+
+    // Clear the input
+
+    input.value = "";
+}
+
+
+/* ---------- SAVE PLAN TASKS ---------- */
+
+function savePlanTasks() {
+
+    localStorage.setItem(
+        "planTasks",
+        JSON.stringify(planTasks)
+    );
+}
+
+
+/* ---------- DISPLAY PLAN TASKS ---------- */
+
+function displayPlanTasks() {
+
+    let categories =
+        ["must", "help", "could"];
+
+
+    categories.forEach(function(category) {
+
+        let list =
+            document.getElementById(category + "List");
+
+
+        // Clear the current list
+
+        list.innerHTML = "";
+
+
+        // Find tasks belonging to this category
+
+        let categoryTasks =
+            planTasks.filter(function(task) {
+
+                return task.category === category;
+
+            });
+
+
+        // Draw each task
+
+        categoryTasks.forEach(function(task) {
+
+            let item =
+                document.createElement("li");
+
+            item.classList.add("plan-task");
+
+
+            // Checkbox
+
+            let checkbox =
+                document.createElement("button");
+
+            checkbox.classList.add("task-checkbox");
+
+            checkbox.textContent =
+                task.completed ? "✓" : "";
+
+
+            // Task text
+
+            let text =
+                document.createElement("span");
+
+            text.textContent =
+                task.text;
+
+
+            // Completed appearance
+
+            if (task.completed) {
+                item.classList.add("completed");
+            }
+
+
+            // Clicking checkbox changes the Boolean
+
+            checkbox.onclick = function() {
+
+                task.completed =
+                    !task.completed;
+
+                savePlanTasks();
+
+                displayPlanTasks();
+            };
+
+
+            // Build the row
+
+            item.appendChild(checkbox);
+
+            item.appendChild(text);
+
+            list.appendChild(item);
+        });
+    });
+}
 /* ========================================
    BRAIN DUMP
    ======================================== */
@@ -889,3 +1131,4 @@ function returnToToday() {
 displayBrainDump();
 loadTodaysCheckIn();
 displayCheckInHistory();
+displayPlanTasks();

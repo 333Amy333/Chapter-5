@@ -1257,3 +1257,354 @@ footer {
 
     transform: translateY(-1px);
 }
+/* ========================================
+   TODAY'S PLAN
+   ======================================== */
+
+.plan-card {
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+
+    padding: 32px 30px;
+    margin-bottom: 25px;
+
+    box-shadow: 0 15px 40px rgba(62, 45, 78, 0.12);
+}
+
+.plan-card h2 {
+    margin: 0 0 8px;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.plan-intro {
+    margin: 0 0 24px;
+
+    color: #596078;
+
+    font-size: 13px;
+}
+
+
+/* ---------- PLAN SECTIONS ---------- */
+
+.plan-section {
+    margin-top: 14px;
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 17px;
+}
+
+.plan-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+.plan-section h3 {
+    margin: 0 0 3px;
+
+    color: #17234c;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.plan-section-heading p {
+    margin: 0;
+
+    color: #777d91;
+
+    font-size: 11px;
+}
+
+
+/* ---------- SUBTLE CATEGORY ACCENTS ---------- */
+
+.plan-section.must {
+    border-left: 4px solid #e97fae;
+}
+
+.plan-section.help {
+    border-left: 4px solid #f2bd75;
+}
+
+.plan-section.could {
+    border-left: 4px solid #9fcfb9;
+}
+
+
+/* ---------- INPUT ROW ---------- */
+
+.plan-input-row {
+    display: flex;
+
+    gap: 9px;
+}
+
+.plan-input-row input {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px solid #d8cad7;
+    border-radius: 12px;
+
+    outline: none;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.plan-input-row input:focus {
+    border-color: #ef78ad;
+
+    box-shadow:
+        0 0 0 3px rgba(239, 120, 173, 0.12);
+}
+
+.plan-input-row input::placeholder {
+    color: #9295a4;
+}
+
+
+/* ---------- ADD BUTTON ---------- */
+
+.plan-input-row button {
+    padding: 0 19px;
+
+    background: #ef78ad;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.plan-input-row button:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(62, 45, 78, 0.12);
+}
+
+
+/* ---------- TASK LISTS ---------- */
+
+#mustList,
+#helpList,
+#couldList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 12px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .plan-card {
+        padding: 26px 20px;
+    }
+
+    .plan-section {
+        padding: 15px;
+    }
+
+    .plan-input-row button {
+        padding: 0 15px;
+    }
+
+}
+/* ========================================
+   PLAN TASK ROWS
+   ======================================== */
+
+.plan-task {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid rgba(216, 202, 215, 0.65);
+    border-radius: 12px;
+
+    color: #17234c;
+
+    font-size: 13px;
+}
+
+
+/* ---------- CHECKBOX ---------- */
+
+.task-checkbox {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    background: white;
+
+    border: 1.5px solid #cfc3cf;
+    border-radius: 7px;
+
+    color: #ef78ad;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.task-checkbox:hover {
+    border-color: #ef78ad;
+
+    transform: scale(1.05);
+}
+
+
+/* ---------- COMPLETED TASK ---------- */
+
+.plan-task.completed .task-checkbox {
+    background: #ef78ad;
+    border-color: #ef78ad;
+
+    color: white;
+}
+
+.plan-task.completed span {
+    color: #9295a4;
+
+    text-decoration: line-through;
+}
+/* ========================================
+   CAPACITY-ADAPTED PLAN
+   ======================================== */
+
+.capacity-plan-banner {
+    margin: 18px 0 20px;
+    padding: 17px 18px;
+
+    border-radius: 16px;
+
+    color: #17234c;
+}
+
+.capacity-plan-banner .plan-mode {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.capacity-plan-banner strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.capacity-plan-banner p {
+    margin: 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* ---------- CAPACITY COLOURS ---------- */
+
+.capacity-plan-banner.red-plan {
+    background: rgba(233, 127, 174, 0.18);
+}
+
+.capacity-plan-banner.yellow-plan {
+    background: rgba(242, 189, 117, 0.22);
+}
+
+.capacity-plan-banner.green-plan {
+    background: rgba(159, 207, 185, 0.22);
+}
+
+
+/* ---------- LOWER PRIORITY SECTIONS ---------- */
+
+.plan-section.deemphasised {
+    opacity: 0.42;
+
+    transform: scale(0.99);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.plan-section.deemphasised:hover,
+.plan-section.deemphasised:focus-within {
+    opacity: 1;
+
+    transform: scale(1);
+}

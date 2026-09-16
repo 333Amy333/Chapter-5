@@ -223,7 +223,109 @@
 >
     ← Return to today's check-in
 </button>
+<!-- TODAY'S PLAN -->
 
+<section class="plan-card">
+
+    <h2>Today's Plan</h2>
+
+    <p class="plan-intro">
+        A realistic plan for the capacity you have today.
+    </p>
+<div id="capacityPlanBanner" class="capacity-plan-banner">
+    <strong>Your plan will adapt to the capacity you choose.</strong>
+</div>
+
+    <!-- MUST HAPPEN -->
+
+    <div class="plan-section must">
+
+        <div class="plan-section-heading">
+            <div>
+                <h3>Must happen</h3>
+                <p>The things that genuinely need you today.</p>
+            </div>
+        </div>
+
+        <div class="plan-input-row">
+
+            <input
+                type="text"
+                id="mustInput"
+                placeholder="Add something that needs to happen..."
+            >
+
+            <button onclick="addPlanTask('must')">
+                Add
+            </button>
+
+        </div>
+
+        <ul id="mustList"></ul>
+
+    </div>
+
+
+    <!-- WOULD HELP -->
+
+    <div class="plan-section help">
+
+        <div class="plan-section-heading">
+            <div>
+                <h3>Would help</h3>
+                <p>Things that would make today or tomorrow easier.</p>
+            </div>
+        </div>
+
+        <div class="plan-input-row">
+
+            <input
+                type="text"
+                id="helpInput"
+                placeholder="Add something that would help..."
+            >
+
+            <button onclick="addPlanTask('help')">
+                Add
+            </button>
+
+        </div>
+
+        <ul id="helpList"></ul>
+
+    </div>
+
+
+    <!-- COULD DO -->
+
+    <div class="plan-section could">
+
+        <div class="plan-section-heading">
+            <div>
+                <h3>Could do</h3>
+                <p>Only if the capacity is there.</p>
+            </div>
+        </div>
+
+        <div class="plan-input-row">
+
+            <input
+                type="text"
+                id="couldInput"
+                placeholder="Add something you could do..."
+            >
+
+            <button onclick="addPlanTask('could')">
+                Add
+            </button>
+
+        </div>
+
+        <ul id="couldList"></ul>
+
+    </div>
+
+</section>
 
 
 </section>
