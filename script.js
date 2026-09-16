@@ -593,6 +593,16 @@ function displayBrainDump() {
         let buttonContainer =
             document.createElement("div");
 
+            /* ----- PLAN BUTTON ----- */
+
+let planButton =
+    document.createElement("button");
+
+planButton.textContent = "Plan →";
+
+planButton.onclick = function() {
+    processBrainDump(index);
+};
 
         /* ----- EDIT BUTTON ----- */
 
@@ -620,10 +630,11 @@ function displayBrainDump() {
 
         // Assemble the buttons
 
-        buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(planButton);
 
-        buttonContainer.appendChild(deleteButton);
+buttonContainer.appendChild(editButton);
 
+buttonContainer.appendChild(deleteButton);
 
         // Assemble the list item
 
@@ -637,8 +648,162 @@ function displayBrainDump() {
         list.appendChild(newItem);
     });
 }
+/* ---------- PROCESS BRAIN DUMP ---------- */
+
+function processBrainDump(index) {
+
+    let thought =
+        brainDump[index];
+
+    let choice =
+        prompt(
+            "When do you want to think about this again?\n\n" +
+            "Type:\n" +
+            "1 for Today\n" +
+            "2 for Tomorrow\n" +
+            "3 to Pick a date"
+        );
 
 
+    // Cancel = do absolutely nothing
+
+    if (choice === null) {
+        return;
+    }
+
+
+    // TODAY
+
+    if (choice === "1") {
+
+        chooseTodayCategory(index);
+
+        return;
+    }
+
+
+    // TOMORROW
+
+    if (choice === "2") {
+
+        let tomorrow =
+            new Date();
+
+        tomorrow.setDate(
+            tomorrow.getDate() + 1
+        );
+
+        let tomorrowDate =
+            tomorrow.toLocaleDateString("en-CA");
+
+        scheduleBrainDumpItem(
+            index,
+            tomorrowDate
+        );
+
+        return;
+    }
+
+
+    // PICK A DATE
+
+    if (choice === "3") {
+
+        chooseBrainDumpDate(index);
+
+        return;
+    }
+}
+/* ---------- SCHEDULE BRAIN DUMP ITEM ---------- */
+
+function scheduleBrainDumpItem(index, date) {
+
+    let thought =
+        brainDump[index];
+
+
+    let task = {
+
+        id: Date.now(),
+
+        text: thought,
+
+        date: date,
+
+        category: null,
+
+        completed: false
+    };
+
+
+    // Move it into the task store
+
+    planTasks.push(task);
+
+    savePlanTasks();
+
+
+    // Remove it from Brain Dump
+
+    brainDump.splice(index, 1);
+
+    saveBrainDump();
+
+
+    // Redraw Brain Dump
+
+    displayBrainDump();
+}
+/* ---------- PICK BRAIN DUMP DATE ---------- */
+
+function chooseBrainDumpDate(index) {
+
+    let chosenDate =
+        prompt(
+            "Enter a date as YYYY-MM-DD"
+        );
+
+
+    // Cancel
+
+    if (chosenDate === null) {
+        return;
+    }
+
+
+    chosenDate =
+        chosenDate.trim();
+
+
+    // Basic date format check
+
+    let datePattern =
+        /^\d{4}-\d{2}-\d{2}$/;
+
+
+    if (!datePattern.test(chosenDate)) {
+
+        alert(
+            "Please use YYYY-MM-DD."
+        );
+
+        return;
+    }
+
+
+    scheduleBrainDumpItem(
+        index,
+        chosenDate
+    );
+}
+/* ---------- TODAY CATEGORY ---------- */
+
+function chooseTodayCategory(index) {
+
+    alert(
+        "Today's task sorting is coming next."
+    );
+}
 /* ---------- DELETE A THOUGHT ---------- */
 
 function deleteBrainDump(index) {
