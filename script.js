@@ -297,7 +297,39 @@ function updatePlanForCapacity(capacity) {
 let planTasks =
     JSON.parse(localStorage.getItem("planTasks")) || [];
 
+    /* ---------- MIGRATE OLD TASKS ---------- */
 
+let tasksWereUpdated = false;
+
+planTasks.forEach(function(task) {
+
+    if (!task.id) {
+        task.id =
+            Date.now() + Math.random();
+        tasksWereUpdated = true;
+    }
+
+    if (!task.date) {
+        task.date =
+            getTodayDate();
+        tasksWereUpdated = true;
+    }
+
+});
+
+if (tasksWereUpdated) {
+
+    localStorage.setItem(
+        "planTasks",
+        JSON.stringify(planTasks)
+    );
+}
+/* ---------- GET TODAY'S DATE ---------- */
+
+function getTodayDate() {
+
+    return new Date().toLocaleDateString("en-CA");
+}
 /* ---------- ADD PLAN TASK ---------- */
 
 function addPlanTask(category) {
@@ -318,11 +350,13 @@ function addPlanTask(category) {
 
     // Create the task
 
-    let task = {
-        text: taskText,
-        category: category,
-        completed: false
-    };
+ let task = {
+    id: Date.now(),
+    text: taskText,
+    date: getTodayDate(),
+    category: category,
+    completed: false
+};
 
 
     // Add it to our plan
@@ -378,12 +412,18 @@ function displayPlanTasks() {
 
         // Find tasks belonging to this category
 
-        let categoryTasks =
-            planTasks.filter(function(task) {
+       let today =
+    getTodayDate();
 
-                return task.category === category;
+let categoryTasks =
+    planTasks.filter(function(task) {
 
-            });
+        return (
+            task.category === category &&
+            task.date === today
+        );
+
+    });
 
 
         // Draw each task
