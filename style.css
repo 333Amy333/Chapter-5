@@ -1608,3 +1608,421 @@ footer {
 
     transform: scale(1);
 }
+/* ========================================
+   WAITING FOR TODAY
+   ======================================== */
+
+.waiting-section {
+    margin: 18px 0 22px;
+    padding: 18px;
+
+    background: rgba(247, 240, 248, 0.72);
+
+    border: 1px solid rgba(216, 202, 215, 0.7);
+    border-radius: 17px;
+}
+
+
+/* ---------- HEADING ---------- */
+
+.waiting-heading {
+    margin-bottom: 14px;
+}
+
+.waiting-heading h3 {
+    margin: 0 0 4px;
+
+    color: #17234c;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.waiting-heading p {
+    margin: 0;
+
+    color: #777d91;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* ---------- INDIVIDUAL WAITING TASK ---------- */
+
+.waiting-task {
+    padding: 14px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+}
+
+.waiting-task + .waiting-task {
+    margin-top: 9px;
+}
+
+.waiting-task-text {
+    display: block;
+
+    margin-bottom: 11px;
+
+    color: #17234c;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ---------- DECISION BUTTONS ---------- */
+
+.waiting-choices {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.waiting-choices button {
+    padding: 8px 11px;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    border: 1px solid #d8cad7;
+    border-radius: 10px;
+
+    color: #596078;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.waiting-choices button:hover {
+    transform: translateY(-1px);
+
+    border-color: #ef78ad;
+}
+
+
+/* ---------- CATEGORY COLOURS ---------- */
+
+.waiting-choices button:nth-child(1):hover {
+    background: rgba(233, 127, 174, 0.16);
+}
+
+.waiting-choices button:nth-child(2):hover {
+    background: rgba(242, 189, 117, 0.20);
+}
+
+.waiting-choices button:nth-child(3):hover {
+    background: rgba(159, 207, 185, 0.20);
+}
+
+
+/* ---------- NOT TODAY ---------- */
+
+.waiting-choices .later-button {
+    margin-left: auto;
+
+    background: transparent;
+
+    border-color: transparent;
+
+    color: #777d91;
+
+    font-weight: 500;
+}
+
+.waiting-choices .later-button:hover {
+    background: #f7dce8;
+
+    border-color: #d8cad7;
+
+    color: #17234c;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .waiting-section {
+        padding: 15px;
+    }
+
+    .waiting-choices {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .waiting-choices button {
+        padding: 8px 5px;
+    }
+
+    .waiting-choices .later-button {
+        grid-column: 1 / -1;
+
+        margin-left: 0;
+    }
+
+}
+/* ========================================
+   DAILY SUPPORT PLAN
+   ======================================== */
+
+
+/* ---------- MAIN CARD ---------- */
+
+.daily-support-plan {
+    margin: 14px 0 20px;
+    padding: 16px 18px;
+
+    background: rgba(255, 255, 255, 0.42);
+
+    border: 1px solid rgba(216, 202, 215, 0.65);
+    border-radius: 14px;
+
+    text-align: left;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.support-plan-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.support-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #777d91;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.support-plan-header h3 {
+    margin: 0;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+
+/* ---------- EDIT BUTTON ---------- */
+
+.edit-support-button {
+    padding: 6px 11px;
+
+    background: transparent;
+
+    border: 1px solid #d8cad7;
+    border-radius: 8px;
+
+    color: #777d91;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.edit-support-button:hover {
+    background: #f7dce8;
+    border-color: #ef78ad;
+    color: #17234c;
+}
+
+
+/* ---------- VIEW / HIDE BUTTON ---------- */
+
+.toggle-support-button {
+    display: block;
+
+    margin: 10px 0 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: #596078;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.toggle-support-button:hover {
+    color: #17234c;
+}
+
+
+/* ---------- COLLAPSED STATE ---------- */
+
+.support-plan-content.collapsed {
+    display: none;
+}
+
+
+/* ---------- EXPANDED CONTENT ---------- */
+
+.support-plan-content:not(.collapsed) {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 14px;
+    padding-top: 14px;
+
+    border-top: 1px solid rgba(216, 202, 215, 0.55);
+}
+
+
+/* ---------- INDIVIDUAL SUPPORT SECTIONS ---------- */
+
+.support-section {
+    margin: 0;
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border-radius: 10px;
+
+    text-align: left;
+}
+
+
+/* ---------- SECTION HEADINGS ---------- */
+
+.support-section h4 {
+    margin: 0 0 7px;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    text-align: left;
+}
+
+
+/* ---------- LIST ---------- */
+
+.support-section ul {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    text-align: left;
+}
+
+
+/* ---------- STRATEGIES ---------- */
+
+.support-section li {
+    position: relative;
+
+    margin: 0;
+    padding: 0 0 0 14px;
+
+    color: #596078;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    text-align: left;
+}
+
+.support-section li:not(.support-empty)::before {
+    content: "•";
+
+    position: absolute;
+
+    left: 1px;
+    top: 0;
+
+    color: #ef78ad;
+}
+
+
+/* ---------- EMPTY STATE ---------- */
+
+.support-section .support-empty {
+    padding-left: 0;
+
+    color: #9295a4;
+
+    font-size: 11px;
+    font-style: italic;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .daily-support-plan {
+        padding: 14px;
+    }
+
+    .support-section {
+        padding: 11px 12px;
+    }
+
+    .support-section h4 {
+        font-size: 13px;
+    }
+
+    .support-section li {
+        font-size: 12px;
+    }
+
+}

@@ -202,7 +202,401 @@ function saveCheckIn() {
         JSON.stringify(checkInHistory)
     );
 }
+/* ========================================
+   SUPPORT PLANS
+   ======================================== */
 
+
+/* ---------- SUPPORT PLAN DATA ---------- */
+
+let supportPlans =
+    JSON.parse(localStorage.getItem("supportPlans")) || {
+
+        red: {
+            need: [],
+            cannotDo: [],
+            practicalSupport: [],
+            decisionSupport: []
+        },
+
+        yellow: {
+            helps: [],
+            limiting: [],
+            practicalSupport: []
+        },
+
+        green: {
+            steady: [],
+            protect: [],
+            tooMuch: []
+        }
+
+    };
+
+
+/* ---------- SAVE SUPPORT PLANS ---------- */
+
+function saveSupportPlans() {
+
+    localStorage.setItem(
+        "supportPlans",
+        JSON.stringify(supportPlans)
+    );
+}
+/* ---------- DISPLAY SUPPORT PLAN ---------- */
+
+function displaySupportPlan(capacity) {
+
+    let title =
+        document.getElementById("supportPlanTitle");
+
+    let content =
+        document.getElementById("supportPlanContent");
+
+
+    if (!title || !content) {
+        return;
+    }
+
+
+    content.innerHTML = "";
+    content.classList.add("collapsed");
+
+let toggleButton =
+    document.getElementById("toggleSupportButton");
+
+if (toggleButton) {
+
+    toggleButton.textContent =
+        "View my plan ↓";
+}
+
+
+    /* RED */
+
+    if (capacity === "Red") {
+
+        title.textContent =
+            "Minimum Day support";
+
+        drawSupportSection(
+            content,
+            "What I need today",
+            supportPlans.red.need
+        );
+
+        drawSupportSection(
+            content,
+            "Things I cannot do today",
+            supportPlans.red.cannotDo
+        );
+
+        drawSupportSection(
+            content,
+            "People & practical support",
+            supportPlans.red.practicalSupport
+        );
+
+        drawSupportSection(
+            content,
+            "If I'm struggling to make decisions",
+            supportPlans.red.decisionSupport
+        );
+    }
+
+
+    /* YELLOW */
+
+    else if (capacity === "Yellow") {
+
+        title.textContent =
+            "Gentle Day support";
+
+        drawSupportSection(
+            content,
+            "What helps me",
+            supportPlans.yellow.helps
+        );
+
+        drawSupportSection(
+            content,
+            "What I'm limiting today",
+            supportPlans.yellow.limiting
+        );
+
+        drawSupportSection(
+            content,
+            "People & practical support",
+            supportPlans.yellow.practicalSupport
+        );
+    }
+
+
+    /* GREEN */
+
+    else if (capacity === "Green") {
+
+        title.textContent =
+            "Open Day support";
+
+        drawSupportSection(
+            content,
+            "What keeps me steady",
+            supportPlans.green.steady
+        );
+
+        drawSupportSection(
+            content,
+            "What I want to protect",
+            supportPlans.green.protect
+        );
+
+        drawSupportSection(
+            content,
+            "Signs I'm doing too much",
+            supportPlans.green.tooMuch
+        );
+    }
+}
+/* ---------- TOGGLE SUPPORT PLAN ---------- */
+
+function toggleSupportPlan() {
+
+    let content =
+        document.getElementById("supportPlanContent");
+
+    let button =
+        document.getElementById("toggleSupportButton");
+
+
+    if (!content || !button) {
+        return;
+    }
+
+
+    let isCollapsed =
+        content.classList.contains("collapsed");
+
+
+    if (isCollapsed) {
+
+        content.classList.remove("collapsed");
+
+        button.textContent =
+            "Hide my plan ↑";
+
+    } else {
+
+        content.classList.add("collapsed");
+
+        button.textContent =
+            "View my plan ↓";
+    }
+}
+/* ---------- DRAW SUPPORT SECTION ---------- */
+
+function drawSupportSection(
+    container,
+    heading,
+    items
+) {
+
+    let section =
+        document.createElement("div");
+
+    section.classList.add("support-section");
+
+
+    let headingElement =
+        document.createElement("h4");
+
+    headingElement.textContent =
+        heading;
+
+
+    let list =
+        document.createElement("ul");
+
+
+    if (items.length === 0) {
+
+        let empty =
+            document.createElement("li");
+
+        empty.classList.add("support-empty");
+
+        empty.textContent =
+            "Nothing added yet.";
+
+        list.appendChild(empty);
+    }
+
+    else {
+
+        items.forEach(function(item) {
+
+            let listItem =
+                document.createElement("li");
+
+            listItem.textContent =
+                item;
+
+            list.appendChild(listItem);
+        });
+    }
+
+
+    section.appendChild(
+        headingElement
+    );
+
+    section.appendChild(
+        list
+    );
+
+    container.appendChild(
+        section
+    );
+}
+/* ---------- EDIT SUPPORT PLAN ---------- */
+
+function openSupportPlanEditor() {
+
+    let capacity =
+        checkInData.capacity;
+
+
+    if (!capacity) {
+
+        alert(
+            "Choose your capacity first."
+        );
+
+        return;
+    }
+
+
+    if (capacity === "Red") {
+
+        editSupportField(
+            "red",
+            "need",
+            "What do you need on a Red day?"
+        );
+
+        editSupportField(
+            "red",
+            "cannotDo",
+            "What can you NOT do on a Red day?"
+        );
+
+        editSupportField(
+            "red",
+            "practicalSupport",
+            "Who or what can provide practical support?"
+        );
+
+        editSupportField(
+            "red",
+            "decisionSupport",
+            "What should Chapter 5 remind you when making decisions feels hard?"
+        );
+    }
+
+
+    else if (capacity === "Yellow") {
+
+        editSupportField(
+            "yellow",
+            "helps",
+            "What helps on a Yellow day?"
+        );
+
+        editSupportField(
+            "yellow",
+            "limiting",
+            "What are you limiting on a Yellow day?"
+        );
+
+        editSupportField(
+            "yellow",
+            "practicalSupport",
+            "Who or what can provide practical support?"
+        );
+    }
+
+
+    else if (capacity === "Green") {
+
+        editSupportField(
+            "green",
+            "steady",
+            "What helps keep you steady on a Green day?"
+        );
+
+        editSupportField(
+            "green",
+            "protect",
+            "What do you want to protect on a Green day?"
+        );
+
+        editSupportField(
+            "green",
+            "tooMuch",
+            "What are your signs that you're doing too much?"
+        );
+    }
+
+
+    saveSupportPlans();
+
+    displaySupportPlan(capacity);
+}
+/* ---------- EDIT SUPPORT FIELD ---------- */
+
+function editSupportField(
+    capacity,
+    field,
+    question
+) {
+
+    let currentItems =
+        supportPlans[capacity][field];
+
+
+    let currentText =
+        currentItems.join("\n");
+
+
+    let response =
+        prompt(
+            question +
+            "\n\nEnter one item per line:",
+            currentText
+        );
+
+
+    // Cancel means keep existing information
+
+    if (response === null) {
+        return;
+    }
+
+
+    let newItems =
+        response
+            .split("\n")
+            .map(function(item) {
+                return item.trim();
+            })
+            .filter(function(item) {
+                return item !== "";
+            });
+
+
+    supportPlans[capacity][field] =
+        newItems;
+}
 /* ========================================
    TODAY'S PLAN
    ======================================== */
@@ -290,7 +684,7 @@ function updatePlanForCapacity(capacity) {
         banner.className =
             "capacity-plan-banner green-plan";
     }
-}
+displaySupportPlan(capacity);}
 
 /* ---------- PLAN DATA ---------- */
 
