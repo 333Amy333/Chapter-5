@@ -1,0 +1,1210 @@
+/* ========================================
+   CHAPTER 5
+   Main stylesheet
+   ======================================== */
+
+
+/* ---------- BASIC SETUP ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "DM Sans", sans-serif;
+    color: #17234c;
+
+    background: linear-gradient(
+        180deg,
+        #ded9ed 0%,
+        #ffd5cf 30%,
+        #f5b4aa 65%,
+        #d9c4df 100%
+    );
+}
+
+
+/* ---------- MAIN APP CONTAINER ---------- */
+
+.app {
+    width: 90%;
+    max-width: 700px;
+
+    margin: 0 auto;
+    padding: 55px 0;
+}
+
+
+/* ---------- HEADER / BRANDING ---------- */
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-family: "Italianno", cursive;
+
+    font-size: 105px;
+    font-weight: 400;
+    line-height: 0.8;
+
+    margin: 0 0 15px 0;
+}
+
+.tagline {
+    margin: 0;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 6px;
+}
+
+.intro {
+    margin: 28px 0 15px;
+
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-style: italic;
+}
+
+.route {
+    margin: 0;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 5px;
+}
+
+
+/* ---------- CARDS ---------- */
+
+.checkin-card,
+.brain-dump {
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+
+    padding: 35px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 15px 40px rgba(62, 45, 78, 0.12);
+}
+
+
+/* ---------- CARD HEADINGS ---------- */
+
+.checkin-card h2,
+.brain-dump h2 {
+    margin: 0 0 15px 0;
+
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+/* ---------- CHECK-IN CARD ---------- */
+
+.checkin-card {
+    text-align: center;
+}
+
+.checkin-card > p {
+    margin-bottom: 25px;
+}
+
+
+/* ---------- ZONE BUTTON CONTAINER ---------- */
+
+.zone-buttons {
+    display: flex;
+    gap: 12px;
+
+    width: 100%;
+    margin-top: 25px;
+}
+
+
+/* ---------- ZONE BUTTONS ---------- */
+
+.zone-buttons button {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 18px 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.zone-buttons button:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 18px rgba(62, 45, 78, 0.12);
+}
+
+.zone-buttons span {
+    display: inline-block;
+
+    margin-top: 5px;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* ---------- INDIVIDUAL ZONE COLOURS ---------- */
+
+.green {
+    background: #c6e3d5;
+}
+
+.yellow {
+    background: #ffd8aa;
+}
+
+.red {
+    background: #f2a9ca;
+}
+
+
+/* ---------- CHECK-IN MESSAGE ---------- */
+
+#message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 62px;
+
+    margin-top: 18px;
+    padding: 15px 20px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+
+    font-size: 14px;
+}
+
+
+/* ---------- BRAIN DUMP ---------- */
+
+.brain-dump {
+    text-align: left;
+}
+
+.brain-dump > p {
+    margin-bottom: 18px;
+}
+
+
+/* ---------- BRAIN DUMP INPUT ROW ---------- */
+
+.brain-input-row {
+    display: flex;
+    align-items: stretch;
+
+    gap: 10px;
+}
+
+
+/* ---------- TEXT INPUT ---------- */
+
+#brainInput {
+    flex: 1;
+    min-width: 0;
+
+    padding: 15px 16px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px solid #d8cad7;
+    border-radius: 15px;
+
+    outline: none;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+}
+
+#brainInput:focus {
+    border-color: #ef78ad;
+
+    box-shadow: 0 0 0 3px rgba(239, 120, 173, 0.12);
+}
+
+
+/* ---------- ADD BUTTON ---------- */
+
+.brain-input-row button {
+    padding: 0 27px;
+
+    background: #ef78ad;
+
+    border: none;
+    border-radius: 15px;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.brain-input-row button:hover {
+    transform: translateY(-2px);
+
+    background: #f28ab7;
+}
+
+
+/* ---------- BRAIN DUMP LIST ---------- */
+
+#brainList {
+    list-style: none;
+
+    margin: 18px 0 0;
+    padding: 0;
+}
+
+#brainList li {
+    margin-top: 9px;
+    padding: 13px 16px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+
+    font-size: 14px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    margin-top: 45px;
+
+    text-align: center;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    letter-spacing: 5px;
+}
+
+
+/* ---------- SMALL SCREEN / PHONE ---------- */
+
+@media (max-width: 600px) {
+
+    .app {
+        width: 92%;
+        padding: 35px 0;
+    }
+
+    .hero h1 {
+        font-size: 82px;
+    }
+
+    .tagline {
+        letter-spacing: 4px;
+    }
+
+    .checkin-card,
+    .brain-dump {
+        padding: 25px 20px;
+        border-radius: 24px;
+    }
+
+    .zone-buttons {
+        gap: 7px;
+    }
+
+    .zone-buttons button {
+        padding: 15px 5px;
+        font-size: 24px;
+    }
+
+    .brain-input-row button {
+        padding: 0 20px;
+    }
+
+}
+/* ========================================
+   CHECK-IN RATINGS
+   ======================================== */
+
+.checkin-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 440px;
+    margin: 14px auto;
+
+    text-align: left;
+}
+
+.checkin-label {
+    width: 140px;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.rating {
+    display: flex;
+    gap: 8px;
+}
+
+.rating button {
+    width: 24px;
+    height: 24px;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    color: #d7d2db;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+.rating button:hover {
+    transform: scale(1.2);
+}
+
+.rating button.selected {
+    color: #ef78ad;
+}
+
+
+/* ---------- CAPACITY BUTTON ---------- */
+
+.calculate-button {
+    width: 100%;
+
+    margin-top: 28px;
+    padding: 15px;
+
+    background: #ef78ad;
+
+    border: none;
+    border-radius: 18px;
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.calculate-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(239, 120, 173, 0.25);
+}
+/* ---------- SELECTED CAPACITY ---------- */
+
+.zone-buttons button.capacity-selected {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 0 3px #17234c,
+        0 8px 20px rgba(62, 45, 78, 0.18);
+}
+
+.zone-buttons button.capacity-selected span {
+    font-weight: 600;
+}
+/* ========================================
+   CHECK-IN POLISH
+   ======================================== */
+
+
+/* ---------- CAPACITY AREA ---------- */
+
+.capacity-section {
+    margin-top: 28px;
+}
+
+.capacity-question {
+    margin-bottom: 14px !important;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.more-detail {
+    margin: 25px 0 20px !important;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+}
+
+
+/* ---------- CAPACITY BUTTONS ---------- */
+
+.zone-buttons {
+    max-width: 520px;
+    margin: 0 auto;
+
+    gap: 12px;
+}
+
+.zone-buttons button {
+    min-height: 92px;
+
+    border-radius: 22px;
+
+    font-size: 22px;
+}
+
+.zone-buttons button span {
+    font-size: 14px;
+}
+
+
+/* Selected capacity */
+
+.zone-buttons button.capacity-selected {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 0 2px #17234c,
+        0 8px 20px rgba(23, 35, 76, 0.12);
+}
+
+
+/* ---------- WELLBEING RATINGS ---------- */
+
+.checkin-row {
+    max-width: 430px;
+
+    margin: 13px auto;
+}
+
+.checkin-label {
+    width: 150px;
+
+    font-size: 14px;
+}
+
+.rating {
+    gap: 10px;
+}
+
+.rating button {
+    width: 22px;
+    height: 22px;
+
+    font-size: 18px;
+}
+
+
+/* ---------- OPTIONAL NOTE ---------- */
+
+.checkin-notes {
+    max-width: 520px;
+
+    margin: 30px auto 0;
+
+    text-align: left;
+}
+
+.checkin-notes label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-style: italic;
+}
+
+.checkin-notes p {
+    margin: 0 0 12px !important;
+
+    color: #596078;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#checkinNote {
+    display: block;
+
+    width: 100%;
+    min-height: 95px;
+
+    padding: 14px 16px;
+
+    resize: vertical;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    border: 1px solid #d8cad7;
+    border-radius: 16px;
+
+    outline: none;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#checkinNote::placeholder {
+    color: #9295a4;
+}
+
+#checkinNote:focus {
+    border-color: #ef78ad;
+
+    box-shadow:
+        0 0 0 3px rgba(239, 120, 173, 0.12);
+}
+
+
+/* ---------- SAVE CHECK-IN BUTTON ---------- */
+
+.calculate-button {
+    max-width: 520px;
+
+    display: block;
+
+    margin: 22px auto 0;
+
+    padding: 16px 20px;
+
+    border-radius: 18px;
+}
+
+
+/* ---------- SAVE STATUS ---------- */
+
+#message {
+    max-width: 520px;
+
+    margin: 16px auto 0;
+
+    min-height: 54px;
+
+    font-size: 13px;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .zone-buttons {
+        gap: 7px;
+    }
+
+    .zone-buttons button {
+        min-height: 80px;
+    }
+
+    .checkin-row {
+        max-width: 100%;
+    }
+
+    .checkin-label {
+        width: 125px;
+        font-size: 13px;
+    }
+
+    .rating {
+        gap: 5px;
+    }
+
+    .rating button {
+        width: 20px;
+        height: 20px;
+
+        font-size: 17px;
+    }
+
+}
+/* ========================================
+   BRAIN DUMP POLISH
+   ======================================== */
+
+.brain-dump {
+    padding: 32px 30px;
+}
+
+.brain-dump h2 {
+    margin-bottom: 8px;
+}
+
+.brain-dump > p {
+    margin: 0 0 18px;
+
+    color: #596078;
+
+    font-size: 13px;
+}
+
+
+/* ---------- INPUT ---------- */
+
+.brain-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+#brainInput {
+    flex: 1;
+
+    min-height: 48px;
+
+    padding: 0 16px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px solid #d8cad7;
+    border-radius: 14px;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+#brainInput:focus {
+    border-color: #ef78ad;
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(239, 120, 173, 0.12);
+}
+
+
+/* ---------- ADD BUTTON ---------- */
+
+.brain-input-row > button {
+    padding: 0 22px;
+
+    background: #ef78ad;
+
+    border: none;
+    border-radius: 14px;
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* ---------- SAVED ITEMS ---------- */
+
+#brainList {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    margin: 14px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#brainList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin: 0;
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 13px;
+
+    font-size: 13px;
+    text-align: left;
+}
+
+#brainList li > span {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------- EDIT + DELETE CONTROLS ---------- */
+
+#brainList li > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    flex-shrink: 0;
+}
+
+#brainList li button {
+    width: auto;
+    height: 30px;
+
+    padding: 0 10px;
+
+    background: transparent;
+
+    border: 1px solid #d8cad7;
+    border-radius: 9px;
+
+    color: #596078;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+#brainList li button:hover {
+    background: #f7dce8;
+    border-color: #ef78ad;
+
+    color: #17234c;
+}
+
+
+/* Make the × button compact */
+
+#brainList li button:last-child {
+    width: 30px;
+
+    padding: 0;
+
+    font-size: 17px;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .brain-dump {
+        padding: 26px 20px;
+    }
+
+    .brain-input-row > button {
+        padding: 0 17px;
+    }
+
+}
+/* ========================================
+   RECENT CHECK-INS
+   ======================================== */
+
+.history-card {
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+
+    padding: 32px 30px;
+    margin-bottom: 25px;
+
+    box-shadow: 0 15px 40px rgba(62, 45, 78, 0.12);
+}
+
+.history-card h2 {
+    margin: 0 0 8px;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.history-intro {
+    margin: 0 0 22px;
+
+    color: #596078;
+
+    font-size: 13px;
+}
+
+
+/* ---------- HISTORY LIST ---------- */
+
+#checkInHistoryList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* ---------- INDIVIDUAL CHECK-IN ---------- */
+
+.history-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    background: rgba(255, 255, 255, 0.52);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+}
+
+
+/* ---------- CAPACITY BADGE ---------- */
+
+.history-capacity {
+    min-width: 70px;
+
+    padding: 8px 10px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.history-capacity.green {
+    background: #c6e3d5;
+}
+
+.history-capacity.yellow {
+    background: #ffd8aa;
+}
+
+.history-capacity.red {
+    background: #f2a9ca;
+}
+
+
+/* ---------- CHECK-IN DETAILS ---------- */
+
+.history-details {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.history-details strong {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.history-details span {
+    color: #596078;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ---------- CHECK-IN NOTE ---------- */
+
+.history-details p {
+    margin: 9px 0 0;
+
+    padding-top: 9px;
+
+    border-top: 1px solid rgba(216, 202, 215, 0.65);
+
+    color: #17234c;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+
+    line-height: 1.5;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .history-card {
+        padding: 26px 20px;
+    }
+
+    .history-item {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .history-capacity {
+        min-width: 58px;
+        padding: 7px;
+
+        font-size: 11px;
+    }
+
+}
+/* ========================================
+   PATTERNS
+   ======================================== */
+
+.patterns-card {
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+
+    padding: 32px 30px;
+    margin-bottom: 25px;
+
+    box-shadow: 0 15px 40px rgba(62, 45, 78, 0.12);
+}
+
+.patterns-card h2 {
+    margin: 0 0 8px;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.patterns-intro {
+    margin: 0 0 22px;
+
+    color: #596078;
+
+    font-size: 13px;
+}
+
+
+/* ---------- PATTERN BUTTONS ---------- */
+
+.pattern-buttons {
+    display: flex;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+.pattern-buttons button {
+    flex: 1;
+
+    padding: 11px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 13px;
+
+    color: #17234c;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.pattern-buttons button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 14px rgba(62, 45, 78, 0.12);
+}
+
+
+/* ---------- RESULT ---------- */
+
+#patternResult {
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+
+    color: #17234c;
+
+    font-size: 13px;
+}
+
+
+/* ---------- RESULT HEADING ---------- */
+
+.pattern-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 16px;
+}
+
+.pattern-heading > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.pattern-heading strong {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.pattern-heading small {
+    color: #777d91;
+
+    font-size: 11px;
+}
+
+
+/* ---------- COLOURED DOT ---------- */
+
+.pattern-dot {
+    width: 13px;
+    height: 13px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.pattern-dot.green {
+    background: #9fcfb9;
+}
+
+.pattern-dot.yellow {
+    background: #f2bd75;
+}
+
+.pattern-dot.red {
+    background: #e97fae;
+}
+
+
+/* ---------- STATS ---------- */
+
+.pattern-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 8px;
+}
+
+.pattern-stats > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 12px 8px;
+
+    background: rgba(255, 255, 255, 0.6);
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.pattern-stats span {
+    color: #596078;
+
+    font-size: 10px;
+}
+
+.pattern-stats strong {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    .patterns-card {
+        padding: 26px 20px;
+    }
+
+    .pattern-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .pattern-stats > div:last-child {
+        grid-column: span 2;
+    }
+
+}

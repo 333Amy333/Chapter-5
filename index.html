@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter 5</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Italianno&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <main class="app">
+
+
+        <!-- HEADER -->
+
+        <header class="hero">
+
+            <h1>Chapter 5</h1>
+
+            <p class="tagline">
+                I WALK DOWN ANOTHER STREET
+            </p>
+
+            <p class="intro">
+                A calmer way to plan, track, and live the next chapter.
+            </p>
+
+            <p class="route">
+                SAME YOU. A BRIGHTER ROUTE.
+            </p>
+
+        </header>
+
+
+       <!-- CHECK-IN -->
+
+<section class="checkin-card">
+
+    <h2>How are you today?</h2>
+
+    <p>
+        Just a quick check-in.<br>
+        Be honest. This is for you.
+    </p>
+<!-- CAPACITY -->
+
+<div class="capacity-section">
+
+    <p class="capacity-question">
+        What's your capacity today?
+    </p>
+
+    <div class="zone-buttons">
+
+        <button
+            class="green"
+            onclick="selectCapacity('Green')"
+        >
+            ☺<br>
+            <span>Green</span>
+        </button>
+
+        <button
+            class="yellow"
+            onclick="selectCapacity('Yellow')"
+        >
+            😐<br>
+            <span>Yellow</span>
+        </button>
+
+        <button
+            class="red"
+            onclick="selectCapacity('Red')"
+        >
+            ☹<br>
+            <span>Red</span>
+        </button>
+
+    </div>
+
+</div>
+
+<p class="more-detail">
+    Tell me a little more.
+</p>
+
+    <!-- SLEEP -->
+
+    <div class="checkin-row">
+
+        <span class="checkin-label">🌙 Sleep</span>
+
+        <div class="rating" data-category="sleep">
+            <button onclick="setRating('sleep', 1)">●</button>
+            <button onclick="setRating('sleep', 2)">●</button>
+            <button onclick="setRating('sleep', 3)">●</button>
+            <button onclick="setRating('sleep', 4)">●</button>
+            <button onclick="setRating('sleep', 5)">●</button>
+        </div>
+
+    </div>
+
+
+    <!-- ENERGY -->
+
+    <div class="checkin-row">
+
+        <span class="checkin-label">☀️ Energy</span>
+
+        <div class="rating" data-category="energy">
+            <button onclick="setRating('energy', 1)">●</button>
+            <button onclick="setRating('energy', 2)">●</button>
+            <button onclick="setRating('energy', 3)">●</button>
+            <button onclick="setRating('energy', 4)">●</button>
+            <button onclick="setRating('energy', 5)">●</button>
+        </div>
+
+    </div>
+
+
+    <!-- MOOD -->
+
+    <div class="checkin-row">
+
+        <span class="checkin-label">♡ Mood</span>
+
+        <div class="rating" data-category="mood">
+            <button onclick="setRating('mood', 1)">●</button>
+            <button onclick="setRating('mood', 2)">●</button>
+            <button onclick="setRating('mood', 3)">●</button>
+            <button onclick="setRating('mood', 4)">●</button>
+            <button onclick="setRating('mood', 5)">●</button>
+        </div>
+
+    </div>
+
+
+    <!-- FOCUS -->
+
+    <div class="checkin-row">
+
+        <span class="checkin-label">🧠 Focus</span>
+
+        <div class="rating" data-category="focus">
+            <button onclick="setRating('focus', 1)">●</button>
+            <button onclick="setRating('focus', 2)">●</button>
+            <button onclick="setRating('focus', 3)">●</button>
+            <button onclick="setRating('focus', 4)">●</button>
+            <button onclick="setRating('focus', 5)">●</button>
+        </div>
+
+    </div>
+
+
+    <!-- OVERWHELM -->
+
+    <div class="checkin-row">
+
+        <span class="checkin-label">〰️ Overwhelm</span>
+
+        <div class="rating" data-category="overwhelm">
+            <button onclick="setRating('overwhelm', 1)">●</button>
+            <button onclick="setRating('overwhelm', 2)">●</button>
+            <button onclick="setRating('overwhelm', 3)">●</button>
+            <button onclick="setRating('overwhelm', 4)">●</button>
+            <button onclick="setRating('overwhelm', 5)">●</button>
+        </div>
+
+    </div>
+
+
+    <!-- OPTIONAL NOTE -->
+
+<div class="checkin-notes">
+
+    <label for="checkinNote">
+        Anything else worth noting?
+    </label>
+
+    <p>
+        Optional — add anything that might give today some context.
+    </p>
+
+    <textarea
+        id="checkinNote"
+        rows="4"
+        placeholder="What's going on today?"
+    ></textarea>
+
+</div>
+
+
+<button
+    class="calculate-button"
+    onclick="saveCheckIn()"
+>
+    Save today's check-in →
+</button>
+
+
+<div id="message">
+    Your check-in hasn't been saved yet.
+</div>
+
+
+
+</section>
+
+        <!-- BRAIN DUMP -->
+
+        <section class="brain-dump">
+
+            <h2>Brain Dump</h2>
+
+            <p>
+                What's taking up space in your head?
+            </p>
+
+
+            <div class="brain-input-row">
+
+                <input
+                    type="text"
+                    id="brainInput"
+                    placeholder="Chuck it in here..."
+                >
+
+                <button onclick="addBrainDump()">
+                    Add
+                </button>
+
+            </div>
+
+
+            <ul id="brainList"></ul>
+
+        </section>
+<!-- RECENT CHECK-INS -->
+
+<section class="history-card">
+
+    <h2>Recent Check-ins</h2>
+
+    <p class="history-intro">
+        A little record of how your days have been looking.
+    </p>
+
+    <div id="checkInHistoryList">
+        <!-- JavaScript will put saved check-ins here -->
+    </div>
+
+</section>
+<!-- PATTERNS -->
+
+<section class="patterns-card">
+
+    <h2>Patterns</h2>
+
+    <p class="patterns-intro">
+        What does each kind of day look like for you?
+    </p>
+
+    <div class="pattern-buttons">
+
+        <button onclick="showPattern('Green')" class="green">
+            Green
+        </button>
+
+        <button onclick="showPattern('Yellow')" class="yellow">
+            Yellow
+        </button>
+
+        <button onclick="showPattern('Red')" class="red">
+            Red
+        </button>
+
+    </div>
+
+    <div id="patternResult">
+
+        Select a capacity to explore your check-ins.
+
+    </div>
+
+</section>
+
+        <!-- FOOTER -->
+
+        <footer>
+            SAME YOU. &nbsp; A BRIGHTER ROUTE.
+        </footer>
+
+
+    </main>
+
+
+    <!-- Our JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
