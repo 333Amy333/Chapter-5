@@ -486,6 +486,273 @@ let categoryTasks =
         });
     });
 }
+/* ---------- DISPLAY WAITING TASKS ---------- */
+
+function displayWaitingTasks() {
+
+    let section =
+        document.getElementById("waitingSection");
+
+    let list =
+        document.getElementById("waitingList");
+
+
+    if (!section || !list) {
+        return;
+    }
+
+
+    let today =
+        getTodayDate();
+
+
+    // Find today's tasks that haven't been classified yet
+
+    let waitingTasks =
+        planTasks.filter(function(task) {
+
+            return (
+                task.date === today &&
+                task.category === null
+            );
+
+        });
+
+
+    // Nothing waiting? Hide the whole section.
+
+    if (waitingTasks.length === 0) {
+
+        section.style.display = "none";
+
+        return;
+    }
+
+
+    // We have something waiting
+
+    section.style.display = "block";
+
+    list.innerHTML = "";
+
+
+    waitingTasks.forEach(function(task) {
+
+        let item =
+            document.createElement("div");
+
+        item.classList.add("waiting-task");
+
+
+        let text =
+            document.createElement("span");
+
+        text.classList.add("waiting-task-text");
+
+        text.textContent =
+            task.text;
+
+
+        let choices =
+            document.createElement("div");
+
+        choices.classList.add("waiting-choices");
+
+
+        // Must happen
+
+        let mustButton =
+            document.createElement("button");
+
+        mustButton.textContent =
+            "Must happen";
+
+        mustButton.onclick = function() {
+            classifyWaitingTask(task.id, "must");
+        };
+
+
+        // Would help
+
+        let helpButton =
+            document.createElement("button");
+
+        helpButton.textContent =
+            "Would help";
+
+        helpButton.onclick = function() {
+            classifyWaitingTask(task.id, "help");
+        };
+
+
+        // Could do
+
+        let couldButton =
+            document.createElement("button");
+
+        couldButton.textContent =
+            "Could do";
+
+        couldButton.onclick = function() {
+            classifyWaitingTask(task.id, "could");
+        };
+
+
+        // Not today
+
+        let laterButton =
+            document.createElement("button");
+
+        laterButton.textContent =
+            "Not today →";
+
+        laterButton.classList.add("later-button");
+
+        laterButton.onclick = function() {
+            moveWaitingTask(task.id);
+        };
+
+
+        choices.appendChild(mustButton);
+        choices.appendChild(helpButton);
+        choices.appendChild(couldButton);
+        choices.appendChild(laterButton);
+
+        item.appendChild(text);
+        item.appendChild(choices);
+
+        list.appendChild(item);
+    });
+}
+/* ---------- CLASSIFY WAITING TASK ---------- */
+
+function classifyWaitingTask(taskId, category) {
+
+    let task =
+        planTasks.find(function(task) {
+
+            return task.id === taskId;
+
+        });
+
+
+    if (!task) {
+        return;
+    }
+
+
+    task.category =
+        category;
+
+
+    savePlanTasks();
+
+    displayWaitingTasks();
+
+    displayPlanTasks();
+}
+/* ---------- MOVE WAITING TASK ---------- */
+
+function moveWaitingTask(taskId) {
+
+    let choice =
+        prompt(
+            "When should this come back?\n\n" +
+            "1 for Tomorrow\n" +
+            "2 to Pick a date"
+        );
+
+
+    if (choice === null) {
+        return;
+    }
+
+
+    // Tomorrow
+
+    if (choice === "1") {
+
+        let tomorrow =
+            new Date();
+
+        tomorrow.setDate(
+            tomorrow.getDate() + 1
+        );
+
+        moveTaskToDate(
+            taskId,
+            tomorrow.toLocaleDateString("en-CA")
+        );
+
+        return;
+    }
+
+
+    // Pick a date
+
+    if (choice === "2") {
+
+        let chosenDate =
+            prompt("Enter a date as YYYY-MM-DD");
+
+
+        if (chosenDate === null) {
+            return;
+        }
+
+
+        chosenDate =
+            chosenDate.trim();
+
+
+        let datePattern =
+            /^\d{4}-\d{2}-\d{2}$/;
+
+
+        if (!datePattern.test(chosenDate)) {
+
+            alert("Please use YYYY-MM-DD.");
+
+            return;
+        }
+
+
+        moveTaskToDate(
+            taskId,
+            chosenDate
+        );
+    }
+}
+/* ---------- MOVE TASK TO DATE ---------- */
+
+function moveTaskToDate(taskId, newDate) {
+
+    let task =
+        planTasks.find(function(task) {
+
+            return task.id === taskId;
+
+        });
+
+
+    if (!task) {
+        return;
+    }
+
+
+    task.date =
+        newDate;
+
+    task.category =
+        null;
+
+
+    savePlanTasks();
+
+    displayWaitingTasks();
+
+    displayPlanTasks();
+}
 /* ========================================
    BRAIN DUMP
    ======================================== */
@@ -800,9 +1067,12 @@ function chooseBrainDumpDate(index) {
 
 function chooseTodayCategory(index) {
 
-    alert(
-        "Today's task sorting is coming next."
+    scheduleBrainDumpItem(
+        index,
+        getTodayDate()
     );
+
+    displayWaitingTasks();
 }
 /* ---------- DELETE A THOUGHT ---------- */
 
@@ -1337,3 +1607,4 @@ displayBrainDump();
 loadTodaysCheckIn();
 displayCheckInHistory();
 displayPlanTasks();
+displayWaitingTasks();
