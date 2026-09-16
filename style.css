@@ -1220,4 +1220,40 @@ footer {
     transform: translateY(-2px);
 
     box-shadow: 0 6px 18px rgba(62, 45, 78, 0.1);
+}/* ========================================
+   HISTORICAL VIEW
+   ======================================== */
+
+#returnTodayButton {
+    width: auto;
+
+    margin: 12px auto 0;
+    padding: 9px 16px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid #d8cad7;
+    border-radius: 12px;
+
+    color: #596078;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+#returnTodayButton:hover {
+    background: #f7dce8;
+    border-color: #ef78ad;
+
+    color: #17234c;
+
+    transform: translateY(-1px);
 }

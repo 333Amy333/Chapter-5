@@ -19,7 +19,9 @@ let checkInData = {
     focus: 0,
     overwhelm: 0
 };
+/* ---------- VIEWING MODE ---------- */
 
+let viewingRecord = null;
 
 /* ---------- SELECT CAPACITY ---------- */
 
@@ -523,6 +525,9 @@ function displayCheckInHistory() {
                 document.createElement("div");
 
             item.classList.add("history-item");
+            item.addEventListener("click", function() {
+    viewCheckIn(record);
+});
 
 
             // Capacity
@@ -715,6 +720,163 @@ function showPattern(capacity) {
 
         </div>
     `;
+}
+/* ---------- VIEW SAVED CHECK-IN ---------- */
+
+function viewCheckIn(record) {
+viewingRecord = record;
+    // Put the saved values back into our working data
+
+    checkInData.capacity = record.capacity;
+    checkInData.sleep = record.sleep;
+    checkInData.energy = record.energy;
+    checkInData.mood = record.mood;
+    checkInData.focus = record.focus;
+    checkInData.overwhelm = record.overwhelm;
+
+
+    // Restore the capacity button
+
+    selectCapacity(record.capacity);
+
+
+    // Restore the five rating rows
+
+    setRating("sleep", record.sleep);
+    setRating("energy", record.energy);
+    setRating("mood", record.mood);
+    setRating("focus", record.focus);
+    setRating("overwhelm", record.overwhelm);
+
+
+    // Restore the note
+
+    let noteBox =
+        document.getElementById("checkinNote");
+
+    noteBox.value =
+        record.note || "";
+
+
+    // Update the status message
+
+    let message =
+        document.getElementById("message");
+
+    message.textContent =
+        "Looking back at " +
+        formatCheckInDate(record.date);
+            document.getElementById("returnTodayButton").style.display =
+        "block";
+
+
+    // Scroll smoothly back to the check-in
+
+    document.querySelector(".checkin-card").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+/* ---------- RETURN TO TODAY ---------- */
+
+function returnToToday() {
+
+    // We are no longer viewing a historical record
+
+    viewingRecord = null;
+
+
+    // Find today's date
+
+    let today =
+        new Date().toLocaleDateString("en-CA");
+
+
+    // Find today's saved check-in
+
+    let todaysRecord =
+        checkInHistory.find(function(record) {
+
+            return record.date === today;
+
+        });
+
+
+    // If today has a saved check-in, restore it
+
+    if (todaysRecord) {
+
+        checkInData.capacity =
+            todaysRecord.capacity;
+
+        checkInData.sleep =
+            todaysRecord.sleep;
+
+        checkInData.energy =
+            todaysRecord.energy;
+
+        checkInData.mood =
+            todaysRecord.mood;
+
+        checkInData.focus =
+            todaysRecord.focus;
+
+        checkInData.overwhelm =
+            todaysRecord.overwhelm;
+
+
+        selectCapacity(
+            todaysRecord.capacity
+        );
+
+
+        setRating(
+            "sleep",
+            todaysRecord.sleep
+        );
+
+        setRating(
+            "energy",
+            todaysRecord.energy
+        );
+
+        setRating(
+            "mood",
+            todaysRecord.mood
+        );
+
+        setRating(
+            "focus",
+            todaysRecord.focus
+        );
+
+        setRating(
+            "overwhelm",
+            todaysRecord.overwhelm
+        );
+
+
+        document.getElementById("checkinNote").value =
+            todaysRecord.note || "";
+
+
+        document.getElementById("message").textContent =
+            "Today's check-in is saved ✓";
+    }
+
+
+    // Hide the return button
+
+    document.getElementById("returnTodayButton").style.display =
+        "none";
+
+
+    // Scroll to the check-in
+
+    document.querySelector(".checkin-card").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 /* ========================================
    LOAD APP
